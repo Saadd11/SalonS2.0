@@ -1,4 +1,4 @@
-namespace SalonS.Models.Booking;
+namespace SalonS.Models.Kunde;
 
 public class Kunde
 {
@@ -10,9 +10,6 @@ public class Kunde
     private string _tlf;
     private string _email;
     private string _adgangskode;
-    private bool _isAdmin;
-
-
     /*
      * Properties
      */
@@ -45,11 +42,6 @@ public class Kunde
         get { return _adgangskode; }            
         set { _adgangskode = value; }           
     }
-    public bool Isadmin                
-    {                                  
-        get { return _isAdmin; }       
-        set { _isAdmin = value; }      
-    }                                  
     
     public Kunde()
     {
@@ -58,24 +50,22 @@ public class Kunde
         _tlf = "";
         _email = "";
         _adgangskode = "";
-        _isAdmin = false;
 
     }
 
-    public Kunde(int kundenummer, string navn, string tlf, string email, string adgangskode, bool isAdmin)
+    public Kunde(int kundenummer, string navn, string tlf, string email, string adgangskode)
     {
         _kundeNummer = kundenummer;
         _navn = navn;
         _tlf = tlf;
         _email = email;
         _adgangskode = adgangskode;
-        _isAdmin = isAdmin;
     }
     
 
     public override string ToString()
     {
-        return $"kundenummer:{_kundeNummer}, Navn: {_navn}, Tlf: {_tlf}, Email: {_email}, Adgangskode: {_adgangskode}, IsAdmin: {_isAdmin}";
+        return $"kundenummer:{_kundeNummer}, Navn: {_navn}, Tlf: {_tlf}, Email: {_email}, Adgangskode: {_adgangskode}";
     }
 
 

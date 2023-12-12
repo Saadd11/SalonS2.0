@@ -9,7 +9,6 @@
     <ItemGroup>
       <Folder Include="Pages\Admin\" />
       <Folder Include="Pages\Booking\" />
-      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>

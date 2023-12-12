@@ -11,7 +11,7 @@ namespace SalonS.Services
 
 
         // properties
-        public Dictionary<string, Booking> Bkatalog
+        public Dictionary<string, Booking> _Bkatalog
         {
             get { return _katalogBooking; }
             set { _katalogBooking = value; }
@@ -29,13 +29,13 @@ namespace SalonS.Services
         
         private void PopulateBookingRepository()
         {
-            _katalogBooking.Add(1.ToString(), new Booking("10:00", "Ali", "Taperfade", 300));
-            _katalogBooking.Add(2.ToString(), new Booking("12:00", "Dani", "Lowfade",300));
-            _katalogBooking.Add(3.ToString(), new Booking("15:00", "Musti", "Midfade",300));
+            //_katalogBooking.Add(1.ToString(), new Booking("10:00", "Ali", "Taperfade", 300));
+            //_katalogBooking.Add(2.ToString(), new Booking("12:00", "Dani", "Lowfade",300));
+            //_katalogBooking.Add(3.ToString(), new Booking("15:00", "Musti", "Midfade",300));
         }
 
         
-        public Dictionary<string, Booking> Bookings { get; set; }
+        public Dictionary<string, Booking>? Bookings { get; set; }
 
         public List<Booking> HentAlleBooking()
         {
@@ -54,7 +54,7 @@ namespace SalonS.Services
 
         public Booking Opdater(Booking booking)
         {
-            Booking editBooking = HentBooking(booking.Tid);
+            Booking Edit = HentBooking(booking.Tid);
 
             _katalogBooking[booking.Tid] = booking;
 

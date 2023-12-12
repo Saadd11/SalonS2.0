@@ -41,7 +41,7 @@ namespace SalonS.Services
         throw new ArgumentException($"Tid {booking.Tid} findes i forvejen");
     }
 
-    public Dictionary<string, Booking> Bookings { get; set; }
+    public Dictionary<string, Booking>? Bookings { get; set; }
     public List<Booking> HentAlleBooking()
     {
         throw new NotImplementedException();
