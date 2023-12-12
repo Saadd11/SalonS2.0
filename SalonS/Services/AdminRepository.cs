@@ -1,5 +1,6 @@
 ﻿using SalonS.Models;
 using SalonS.Models.Kunde;
+using SalonS.ServicAs;
 using System.Text;
 using static SalonS.Services.AdminRepository;
 
