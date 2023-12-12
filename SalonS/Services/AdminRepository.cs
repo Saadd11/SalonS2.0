@@ -1,6 +1,7 @@
 ﻿using SalonS.Models;
 using SalonS.Models.Kunde;
 using System.Text;
+using SalonS.ServicAs;
 using static SalonS.Services.AdminRepository;
 
 namespace SalonS.Services
@@ -51,6 +52,26 @@ namespace SalonS.Services
         }
 
         public Kunde HentKunde(int kundeNummer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddKunde(Kunde kunde)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateKunde(Kunde kunde)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Kunde? GetKunde(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckKunde(string email, string adgangskode)
         {
             throw new NotImplementedException();
         }
