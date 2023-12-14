@@ -6,6 +6,8 @@
         private string _tlf;
         private string _email;
         private string _adgangskode;
+        private bool _isAdmin;
+
 
 
         /*
@@ -35,12 +37,20 @@
             set { _adgangskode = value; }
         }
 
+        public bool IsAdminAdmin
+        {
+            get { return _isAdmin; }
+            set { _isAdmin = value; }
+        }
+
+
         public Admin()
         {
             _navn = "";
             _tlf = "";
             _email = "";
             _adgangskode = "";
+            _isAdmin = true;
         }
 
         public Admin(string NavnAdmin, string TlfAdmin, string EmailAdmin, string AdgangskodeAdmin)
@@ -49,16 +59,17 @@
             _tlf = TlfAdmin;
             _email = EmailAdmin;
             _adgangskode = AdgangskodeAdmin;
+            _isAdmin = true;
         }
 
 
 
         public override string ToString()
         {
-            return $"Navn: {_navn}, Tlf: {_tlf}, Email: {_email}, Adgangskode: {_adgangskode}";
+            return
+                $"{{{nameof(NavnAdmin)}={NavnAdmin.ToString()}, {nameof(TlfAdmin)}={TlfAdmin}, {nameof(AdgangskodeAdmin)}={AdgangskodeAdmin}, {nameof(IsAdminAdmin)}={IsAdminAdmin.ToString()}}}";
+
         }
 
-
     }
-
 }

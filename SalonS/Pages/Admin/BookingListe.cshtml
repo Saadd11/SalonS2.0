@@ -1,0 +1,32 @@
+@page
+@model SalonS.Pages.Kunde.BookinglisteModel
+
+@{
+    Layout = "_Layout";
+}
+
+<h1>Bookede Tider</h1>
+
+@if (Model.Bookings.Any())
+{
+    <ul>
+        @foreach (var booking in Model.Bookings)
+        {
+            <li>
+                Tid: @booking.Tid, Frisør: @booking.Frisør, Service: @booking.Klip, Pris: @booking.Pris kr, Dato: @booking.Dato.ToString("D")
+                @if (booking.Kunde != null)
+                {
+                    <p>Kunde Information:</p>
+                    <p>Navn: @booking.Kunde.Navn</p>
+                    <p>Email: @booking.Kunde.Email</p>
+                    <p>Telefon: @booking.Kunde.Tlf</p>
+                    <!-- Add more customer details as needed -->
+                }
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Ingen bookinger fundet.</p>
+}

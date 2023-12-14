@@ -1,23 +1,20 @@
 ﻿using SalonS.Models;
+using System.Collections.Generic;
 using SalonS.Models.Kunde;
 using SalonS.ServicAs;
-using System.Text;
-using SalonS.ServicAs;
-using static SalonS.Services.AdminRepository;
 
 namespace SalonS.Services
 {
-
     public class AdminRepository : IAdminRepository
     {
-        // instans felt
+        private readonly IKundeRepository _kundeRepository;
         private List<Admin> _katalogAdmin = new List<Admin>();
 
         public Admin? AdminLoggedIn { get; private set; }
 
-        public AdminRepository(bool mockData = false)
+        public AdminRepository(IKundeRepository kundeRepository, bool mockData = false)
         {
-            AdminLoggedIn = null;
+            _kundeRepository = kundeRepository;
 
             if (mockData)
             {
@@ -27,27 +24,19 @@ namespace SalonS.Services
             }
         }
 
+        // Admin-specific methods
         public bool CheckAdmin(string email, string adgangskode)
         {
-            Admin? foundUser = _katalogAdmin.Find(u => u.EmailAdmin == email && u.AdgangskodeAdmin == adgangskode);
-
-            if (foundUser != null)
-            {
-                AdminLoggedIn = foundUser;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            // Implementation specific to checking an Admin
         }
+        
 
         public void LogoutAdmin()
         {
             AdminLoggedIn = null;
         }
 
-        public Kunde RemoveKunde(int kundeNummer)
+        Kunde IAdminRepository.RemoveKunde(int kundeNummer)
         {
             throw new NotImplementedException();
         }
@@ -57,27 +46,60 @@ namespace SalonS.Services
             throw new NotImplementedException();
         }
 
+        void IAdminRepository.AddKunde(Kunde kunde)
+        {
+            AddKunde(kunde);
+        }
+
+        void IAdminRepository.UpdateKunde(Kunde kunde)
+        {
+            UpdateKunde(kunde);
+        }
+
+        Kunde? IAdminRepository.GetKunde(int id)
+        {
+            return GetKunde(id);
+        }
+
+        // Delegated Kunde management methods
         public void AddKunde(Kunde kunde)
         {
-            throw new NotImplementedException();
+            _kundeRepository.AddKunde(kunde);
+        }
+
+        public Kunde? GetKunde(int kundenummer)
+        {
+            return _kundeRepository.GetKunde(kundenummer);
+        }
+
+        public List<Kunde> GetAlleKunder()
+        {
+            return _kundeRepository.CheckKunde();
         }
 
         public void UpdateKunde(Kunde kunde)
         {
-            throw new NotImplementedException();
+            _kundeRepository.UpdateKunde(kunde);
         }
 
-        public Kunde? GetKunde(int id)
+        public void RemoveKunde(int kundenummer)
         {
-            throw new NotImplementedException();
+            _kundeRepository.RemoveKunde(kundenummer);
         }
 
         public bool CheckKunde(string email, string adgangskode)
         {
-            throw new NotImplementedException();
+            return _kundeRepository.CheckKunde(email, adgangskode);
         }
+
+
+        // LogoutKunde - If admins also manage their own login state as Kunde
+        public void LogoutKunde()
+        {
+            _kundeRepository.LogoutKunde();
+        }
+
+        // ... other methods as needed for admin tasks ...
     }
-
-
-
 }
+

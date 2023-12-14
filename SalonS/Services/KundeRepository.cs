@@ -1,3 +1,4 @@
+using SalonS.Models;
 using SalonS.Models.Kunde;
 
 namespace SalonS.Services;
@@ -5,49 +6,53 @@ namespace SalonS.Services;
 public class KundeRepository : IKundeRepository
 {
     //Instans felt
-    private List<Kunde> _kunderRepo = new List<Kunde>(); // Use non-nullable list
+    private List<Kunde> _kunderRepo = new List<Kunde>();
+    private List<Admin> _katalogAdmin= new List<Admin>();
+
 
     public Kunde? KundeLoggedIn { get; private set; } // Use non-nullable Kunde
+    
+    public Admin? AdminLoggedIn { get; private set; } // Use non-nullable Kunde
+   
+    public Kunde? KundeLoggedin { get; private set; }
 
     
-    //Constructor
     public KundeRepository(bool mockData = false)
     {
-        
         KundeLoggedIn = null;
-        //_kunder = JsonFileServices.ReadFromJson<User>(_fileName);
+        //_kunderRepo = JsonFileServices.ReadFromJson<Kunde>(_fileName);
         
         if (mockData)
         {
-            //_kunderRepo.Add(new Kunde(1,"saad", "42546563", "hsfh@live.dk", "2000"));
-            //_kunderRepo.Add(new Kunde(2, "saaad", "98234576", "yhbh@gmail.com", "2450"));
-            //_kunderRepo.Add(new Kunde(3, "ødelagt i fort 16-0", "12456587", "peop@outlook.gb", "4312"));
+            
+            // Add mock Kunde
+            _kunderRepo.Add(new Kunde(1, "ali", "4254231", "test.dk", "ggg"));
+            // ... other Kunde ...
+
+            // Add mock Admin
+            _katalogAdmin.Add(new Admin("adminsaad", "admin42546563", "adminhsfh@live.dk", "admin2000"));
+            // ... other Admin ...
         }
     }
+    
 
-    public Kunde? KundeLoggedin { get; }
+    public void LogoutAdmin()
+    {
+        AdminLoggedIn = null;
+    }
 
+    //KUNDE TING EFTER DET HER
+
+    
+    
+    
     public void AddKunde(Kunde kunde)
     {
         _kunderRepo.Add(kunde);
         //JsonFileServices.WriteToJson(_usersRepo, _fileName);
 
     }
-    
-    public List<Kunde> Search(string Email)
-    {
-        List<Kunde> searchResults = new List<Kunde>();
 
-        foreach (Kunde user in _kunderRepo)
-        {
-            if ((user.Navn.IndexOf(Email, StringComparison.OrdinalIgnoreCase) != -1) ||
-                (user.Navn.IndexOf(Email, StringComparison.OrdinalIgnoreCase) != -1))
-            {
-                searchResults.Add(user);
-            }
-        }
-        return searchResults;
-    }
     
 
     public void LogoutKunde()
@@ -56,16 +61,35 @@ public class KundeRepository : IKundeRepository
         
     }
 
-    public List<Kunde?> GetAlleKunder()
+    public List<Kunde> GetKunde()
     {
         return _kunderRepo;
     }
-
-
+    
     public Kunde? GetKunde(int kundenummer)
     {
         return _kunderRepo.FirstOrDefault(x => x?.Kundenummer == kundenummer);
     }
+
+
+    public bool CheckKunde(string email, string adgangskode)
+    {
+        Kunde? foundUser = _kunderRepo.Find(u => u.Email == email && u.Adgangskode == adgangskode);
+
+        if (foundUser != null)
+        {
+            KundeLoggedIn = foundUser;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    
+  
+    
 
     public void RemoveKunde(int kundenummer)
     {
@@ -87,22 +111,6 @@ public class KundeRepository : IKundeRepository
             _kunderRepo.Insert(userIndex, kunde);
 
            // JsonFileServices.WriteToJson(_usersRepo, _fileName);
-        }
-    }
-    
-    
-    public bool CheckKunde(string email, string adgangskode)
-    {
-        Kunde? foundUser = _kunderRepo.Find(u => u.Email == email && u.Adgangskode == adgangskode);
-
-        if (foundUser != null)
-        {
-            KundeLoggedIn = foundUser;
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
     

@@ -9,5 +9,33 @@ namespace SalonS.Pages.Kunde
         [BindProperty, Required(ErrorMessage = "Indtast Navn"),
          Display(Name = "Navn")]
         public string Navn { get; set; }
+        
+        [BindProperty, Required(ErrorMessage = "Indtast Telefon Nummer"),
+         Display(Name = "Tlf.nr")]
+        public string Tlf { get; set; }
+        
+        [BindProperty, Required(ErrorMessage = "Indtast Email"),
+         Display(Name = "Email")]
+        public string Email { get; set; }
+        
+        
+        
+        [BindProperty, Required(ErrorMessage = "Indtast Adgangskode"),
+         Display(Name = "Adgangskode")]
+        public string Adgangskode { get; set; }
+        
+        public void OnGet()
+        {
+        }
+
+        public IActionResult OnPost()
+        {
+         if (!ModelState.IsValid)
+         {
+          return Page();
+         }
+         return RedirectToPage("finito/");
+        }
+        
     }
 }

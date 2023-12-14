@@ -1,13 +1,13 @@
 using System.Text.Json;
 using SalonS.Models;
-using SalonS.Services;
+using SalonS.Models.Kunde;
 
 namespace SalonS.Services
 {
     public class BookingRepositoryjson : IBookingRepository
     {
     // instans felt
-        Dictionary<string, Booking> _bookings;
+        Dictionary<string, Booking> _katalogBooking;
         
     // properties
         public Dictionary<string, Booking> Bkatalog
@@ -41,16 +41,37 @@ namespace SalonS.Services
         throw new ArgumentException($"Tid {booking.Tid} findes i forvejen");
     }
 
-    public Dictionary<string, Booking>? Bookings { get; set; }
+    public Kunde? HentAlleKunder(int Kundenummer)
+    {
+        throw new NotImplementedException();
+    }
+
     public List<Booking> HentAlleBooking()
     {
         throw new NotImplementedException();
     }
-    
-    public Booking Slet(string Tid)
+
+
+    public List<Booking> HentKundeBooking(int kundenummer)
     {
-        Booking slettetBooking = HentBooking(Tid);
-        Bkatalog.Remove(Tid);
+        throw new NotImplementedException();
+    }
+
+    public List<Booking> GetCustomerBookings(int kundenummer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<Booking>? Bookings { get; set; }
+    public List<Booking> HentAlleBooking(int kundenummer)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public Booking Slet(string tid)
+    {
+        Booking slettetBooking = HentBooking(tid);
+        Bkatalog.Remove(tid);
 
         WriteToJson();
         return slettetBooking;
@@ -69,16 +90,16 @@ namespace SalonS.Services
 
 
 
-    public Booking HentBooking(string Tid)
+    public Booking HentBooking(string tid)
     {
-        if (Bkatalog.ContainsKey(Tid))
+        if (Bkatalog.ContainsKey(tid))
         {
-            return Bkatalog[Tid];
+            return Bkatalog[tid];
         }
         else
         {
             // opdaget en fejl
-            throw new KeyNotFoundException($"Tid {Tid} findes ikke");
+            throw new KeyNotFoundException($"Tid {tid} findes ikke");
         }
     }
 
@@ -184,14 +205,14 @@ namespace SalonS.Services
      * Hjælpe metoder til at læse og skrive til en fil i json format
      */
 
-    private const string FILENAME = "BookingRepository.json";
+    private const string Filename = "BookingRepository.json";
 
     private Dictionary<string, Booking> ReadFromJson()
     {
-        if (File.Exists(FILENAME))
+        if (File.Exists(Filename))
         {
-            StreamReader reader = File.OpenText(FILENAME);
-            Dictionary<string, Booking> BKatalog = JsonSerializer.Deserialize<Dictionary<string, Booking>>(reader.ReadToEnd());
+            StreamReader reader = File.OpenText(Filename);
+            Dictionary<string, Booking> bKatalog = JsonSerializer.Deserialize<Dictionary<string, Booking>>(reader.ReadToEnd());
             reader.Close();
             return Bkatalog;
         }
@@ -204,7 +225,7 @@ namespace SalonS.Services
 
     private void WriteToJson()
     {
-        FileStream fs = new FileStream(FILENAME, FileMode.Create);
+        FileStream fs = new FileStream(Filename, FileMode.Create);
         Utf8JsonWriter writer = new Utf8JsonWriter(fs);
         JsonSerializer.Serialize(writer, Bkatalog);
         fs.Close();
