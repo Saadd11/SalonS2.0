@@ -7,18 +7,18 @@ namespace SalonS.Pages
 {
     public class LogoutModel : PageModel
     {
-        private IKundeRepository _kundeRepository;
+        private readonly IKundeRepository _kundeRepository;
 
         public LogoutModel(IKundeRepository kundeRepository)
         {
             _kundeRepository = kundeRepository;
         }
 
-        public IActionResult OnGet()
+        public RedirectToPageResult OnGet()
         {
             _kundeRepository.LogoutKunde();
 
-            return RedirectToPage("Index");
+            return RedirectToPage("ConfirmLogout");
         }
     }
 }

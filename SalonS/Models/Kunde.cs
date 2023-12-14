@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 
-namespace SalonS.Models.Kunde
+namespace SalonS.Models
 {
-    public class Kunde : IEnumerable
+    public class Kunde
     {
         /*
          * Instans felt
@@ -54,9 +52,6 @@ namespace SalonS.Models.Kunde
             set { _isAdmin = value; }
         }
 
-        // Collection property to store customer's bookings
-        public List<Booking> Bookings { get; set; } = new List<Booking>();
-
         public Kunde()
         {
             _kundeNummer = 0;
@@ -79,12 +74,8 @@ namespace SalonS.Models.Kunde
 
         public override string ToString()
         {
-            return $"{{{nameof(Kundenummer)}={Kundenummer.ToString()}, {nameof(Navn)}={Navn}, {nameof(Adgangskode)}={_adgangskode}, {nameof(IsAdmin)}={IsAdmin.ToString()}}}";
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
+            return
+                $"{{{nameof(Kundenummer)}={Kundenummer.ToString()}, {nameof(Navn)}={Navn}, {nameof(Adgangskode)}={_adgangskode}, {nameof(IsAdmin)}={IsAdmin.ToString()}}}";
         }
     }
 }

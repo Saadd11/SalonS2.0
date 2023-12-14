@@ -8,7 +8,7 @@ public class IndexKunderModel : PageModel
 {
     private IKundeRepository _kunde;
 
-    public Models.Kunde.Kunde KundeLoggedIn { get; private set; }
+    public Models.Kunde KundeLoggedIn { get; private set; }
 
     public IndexKunderModel(IKundeRepository users)
     {
@@ -22,7 +22,7 @@ public class IndexKunderModel : PageModel
             return RedirectToPage("/Login");
         }
 
-        KundeLoggedIn = _kunde.GetKunde(kundenummer);
+        KundeLoggedIn = _kunde.GetKundeNr(kundenummer);
 
         if (KundeLoggedIn is null)
         {

@@ -68,7 +68,6 @@
         {
             return
                 $"{{{nameof(NavnAdmin)}={NavnAdmin.ToString()}, {nameof(TlfAdmin)}={TlfAdmin}, {nameof(AdgangskodeAdmin)}={AdgangskodeAdmin}, {nameof(IsAdminAdmin)}={IsAdminAdmin.ToString()}}}";
-
         }
 
     }

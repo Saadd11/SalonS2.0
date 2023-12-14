@@ -1,5 +1,4 @@
 using SalonS.Models;
-using SalonS.Models.Kunde;
 
 namespace SalonS.Services;
 
@@ -28,7 +27,7 @@ public class KundeRepository : IKundeRepository
             // ... other Kunde ...
 
             // Add mock Admin
-            _katalogAdmin.Add(new Admin("adminsaad", "admin42546563", "adminhsfh@live.dk", "admin2000"));
+            _katalogAdmin.Add(new Admin("admin", "admin42546563", "adminhsfh@live.dk", "admin"));
             // ... other Admin ...
         }
     }
@@ -64,7 +63,7 @@ public class KundeRepository : IKundeRepository
         return _kunderRepo;
     }
     
-    public Kunde? GetKunde(int kundenummer)
+    public Kunde? GetKundeNr(int kundenummer)
     {
         return _kunderRepo.FirstOrDefault(x => x?.Kundenummer == kundenummer);
     }
@@ -73,7 +72,6 @@ public class KundeRepository : IKundeRepository
     public bool CheckKunde(string email, string adgangskode)
     {
         Kunde? foundUser = _kunderRepo.Find(u => u.Email == email && u.Adgangskode == adgangskode);
-
         if (foundUser != null)
         {
             KundeLoggedIn = foundUser;
@@ -86,9 +84,7 @@ public class KundeRepository : IKundeRepository
     }
     
     
-  
     
-
     public void RemoveKunde(int kundenummer)
     {
         var user = _kunderRepo.FirstOrDefault(x => x.Kundenummer == kundenummer);
@@ -112,4 +108,12 @@ public class KundeRepository : IKundeRepository
         }
     }
     
+    public void Edit(Kunde kunde)
+    {
+        kunde.Kundenummer = kunde.Kundenummer;
+        kunde.Navn = kunde.Navn;
+        kunde.Tlf = kunde.Tlf;
+        kunde.Email = kunde.Email;
+        kunde.Adgangskode = kunde.Adgangskode;
+    }
 }

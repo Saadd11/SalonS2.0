@@ -1,6 +1,5 @@
 using System.Text.Json;
 using SalonS.Models;
-using SalonS.Models.Kunde;
 
 namespace SalonS.Services
 {
@@ -27,6 +26,30 @@ namespace SalonS.Services
     /*
      * metoder
      */
+    public Dictionary<string, Booking> GetAll()
+    {
+        throw new NotImplementedException();
+    }
+
+    void IBookingRepository.Tilføj(Booking booking)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OpdaterBooking(Booking booking)
+    {
+        throw new NotImplementedException();
+    }
+    public void Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Kunde? FindByCustomerId(int customerId)
+    {
+        throw new NotImplementedException();
+    }
+
     public Booking Tilføj(Booking booking)
     {
         if (Bkatalog.ContainsKey(booking.Tid))
@@ -41,12 +64,22 @@ namespace SalonS.Services
         throw new ArgumentException($"Tid {booking.Tid} findes i forvejen");
     }
 
-    public Kunde? HentAlleKunder(int Kundenummer)
+    public List<Kunde?> HentAlleKunder(int Kundenummer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<Kunde?> HentAlleKunder()
     {
         throw new NotImplementedException();
     }
 
     public List<Booking> HentAlleBooking()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Booking HentBookingID(int id)
     {
         throw new NotImplementedException();
     }

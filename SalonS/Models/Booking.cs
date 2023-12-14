@@ -1,13 +1,21 @@
 namespace SalonS.Models;
-
+using System.Collections;
 public class Booking
 {
-    private DateTime _dato; // Added property for date
+    public int BookingId { get; set; } // Add this property
+    private DateTime _dato;
     private string _tid;
     private string _frisør;
     private string _klip;
     private int _pris;
-    private Kunde.Kunde _kunde;
+    private Kunde? _kunde;
+    public List<string> _kliptyper = new List<string>() {"Klipning med skæg", "klipning uden skæg"};
+
+    public List<string> Kliptyper
+    {
+        get => _kliptyper;
+        set => _kliptyper = value ?? throw new ArgumentNullException(nameof(value));
+    }
 
     /*
      * Properties
@@ -42,7 +50,7 @@ public class Booking
         set { _dato = value; }
     }
 
-    public Kunde.Kunde Kunde
+    public Kunde? Kunde
     {
         get { return _kunde; }
         set { _kunde = value; }
@@ -60,7 +68,7 @@ public class Booking
     }
 
     // Parameterized Constructor
-    public Booking(DateTime dato, string tid,string frisør, string klip, int pris,Kunde.Kunde kunde)
+    public Booking(int i, DateTime dato, string tid, string frisør, string klip, int pris, Kunde? kunde)
     {
         _dato = dato;
         _tid = tid;

@@ -1,15 +1,17 @@
 using SalonS.Models;
-using SalonS.Models.Kunde;
 
 namespace SalonS.Services;
 
 public interface IBookingRepository
 {
-    Booking HentBooking(string tid);
-    Booking Opdater(Booking booking);
-    Booking Slet(string tid);
-    Booking Tilføj(Booking booking);
-    public Kunde? HentAlleKunder(int Kundenummer);
+    public List<Kunde?> HentAlleKunder();
     List<Booking> HentAlleBooking();
+    Booking HentBookingID(int BookingId);
+    Dictionary<string, Booking> GetAll();
+    void Tilføj(Booking booking);
+    void OpdaterBooking(Booking booking);
+    void Delete(int id);
+    Kunde? FindByCustomerId(int customerId);
+
     
 }

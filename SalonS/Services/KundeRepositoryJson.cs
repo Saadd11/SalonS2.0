@@ -1,8 +1,5 @@
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Xml;
-using SalonS.Models.Kunde;
-
+using SalonS.Models;
 namespace SalonS.Services;
 
 public class KundeRepositoryJson

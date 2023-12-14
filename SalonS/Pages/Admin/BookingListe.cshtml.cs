@@ -17,7 +17,7 @@ namespace SalonS.Pages.Kunde
         }
 
         public List<Models.Booking> Bookings { get; set; }
-        public List<Models.Kunde.Kunde> Kunder { get; set; }
+        public List<Models.Kunde> Kunder { get; set; }
 
         [BindProperty]
         public string Navn { get; set; }
