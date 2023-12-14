@@ -25,12 +25,14 @@ namespace SalonS.Services
 
         private void PopulateBookingRepository()
         {
-            _katalogBooking.Add("1", new Booking("10:00", "Ali", "Taperfade", 300, Convert.ToDateTime("2023, 12, 28"),new Kunde(1, "ali", "4254231", "test.dk", "ggg")));
-            _katalogBooking.Add("2", new Booking("12:00", "Dani", "Lowfade", 300,Convert.ToDateTime("2023, 07, 28"),new Kunde(1, "ali", "4254231", "test.dk", "ggg")));;
-            _katalogBooking.Add("3", new Booking("15:00", "Musti", "Midfade", 300,Convert.ToDateTime("2023, 11, 28"),new Kunde(1, "ali", "4254231", "test.dk", "ggg")));
+            _katalogBooking.Add("1",new Booking(Convert.ToDateTime("2023, 12, 01"), "09:23", "Ali", "Buzzcut",300, new Kunde(1, "ali", "55235465", "test.dk", "ggg")));
+            _katalogBooking.Add("2",new Booking(Convert.ToDateTime("2023, 12, 28"), "19:55", "Saad", "Fade",300, new Kunde(2, "D", "67349922", "test.dk", "ggg")));
+            _katalogBooking.Add("3",new Booking(Convert.ToDateTime("2023, 01, 21"), "22:27", "D", "Klipning &  Skæg",300, new Kunde(3, "Saad", "98547612", "test.dk", "ggg")));
         }
 
         public List<Booking>? Bookings { get; set; }
+        
+        
 
 
         
@@ -39,6 +41,7 @@ namespace SalonS.Services
             _katalogBooking.TryGetValue(tid, out var booking);
             return booking;
         }
+        
 
         public Booking Opdater(Booking booking)
         {

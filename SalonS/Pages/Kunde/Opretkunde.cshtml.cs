@@ -34,8 +34,12 @@ namespace SalonS.Pages.Kunde
          {
           return Page();
          }
-         return RedirectToPage("finito/");
+
+         // Perform registration logic here
+
+         // Redirect to the Opretbooking page
+         return RedirectToPage("/Booking/Opretbooking");
+        }
         }
         
     }
-}

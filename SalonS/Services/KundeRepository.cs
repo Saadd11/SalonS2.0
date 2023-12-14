@@ -13,9 +13,7 @@ public class KundeRepository : IKundeRepository
     public Kunde? KundeLoggedIn { get; private set; } // Use non-nullable Kunde
     
     public Admin? AdminLoggedIn { get; private set; } // Use non-nullable Kunde
-   
-    public Kunde? KundeLoggedin { get; private set; }
-
+    
     
     public KundeRepository(bool mockData = false)
     {

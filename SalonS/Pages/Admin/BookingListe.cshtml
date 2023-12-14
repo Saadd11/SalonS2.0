@@ -13,10 +13,11 @@
         @foreach (var booking in Model.Bookings)
         {
             <li>
-                Tid: @booking.Tid, Frisør: @booking.Frisør, Service: @booking.Klip, Pris: @booking.Pris kr, Dato: @booking.Dato.ToString("D")
+                Dato : @booking.Dato.ToString("D") Tid : @booking.Tid, Frisør : @booking.Frisør, Service : @booking.Klip, Pris: @booking.Pris kr,:
                 @if (booking.Kunde != null)
                 {
                     <p>Kunde Information:</p>
+                    <p>KundeNummer: @booking.Kunde.Kundenummer</p>
                     <p>Navn: @booking.Kunde.Navn</p>
                     <p>Email: @booking.Kunde.Email</p>
                     <p>Telefon: @booking.Kunde.Tlf</p>

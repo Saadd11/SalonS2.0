@@ -2,11 +2,11 @@ namespace SalonS.Models;
 
 public class Booking
 {
+    private DateTime _dato; // Added property for date
     private string _tid;
     private string _frisør;
     private string _klip;
     private int _pris;
-    private DateTime _dato; // Added property for date
     private Kunde.Kunde _kunde;
 
     /*
@@ -51,22 +51,22 @@ public class Booking
     // Default Constructor
     public Booking()
     {
+        _dato = DateTime.Today; // Initialize with today's date
         _tid = "";
         _frisør = "";
         _klip = "";
         _pris = 0;
-        _dato = DateTime.Today; // Initialize with today's date
         _kunde = null;
     }
 
     // Parameterized Constructor
-    public Booking(string tid, string frisør, string klip, int pris, DateTime dato,Kunde.Kunde kunde)
+    public Booking(DateTime dato, string tid,string frisør, string klip, int pris,Kunde.Kunde kunde)
     {
+        _dato = dato;
         _tid = tid;
         _frisør = frisør;
         _klip = klip;
         _pris = pris;
-        _dato = dato;
-        _kunde = Kunde;
+        _kunde = kunde;
     }
 }

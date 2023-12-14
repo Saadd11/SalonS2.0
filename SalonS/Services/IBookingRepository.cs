@@ -11,4 +11,5 @@ public interface IBookingRepository
     Booking Tilføj(Booking booking);
     public Kunde? HentAlleKunder(int Kundenummer);
     List<Booking> HentAlleBooking();
+    
 }
