@@ -9,7 +9,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<KundeRepository>(new KundeRepository(true));
 builder.Services.AddSingleton<BookingRepository>(new BookingRepository(true));
 
-
+    
 
 var app = builder.Build();
 

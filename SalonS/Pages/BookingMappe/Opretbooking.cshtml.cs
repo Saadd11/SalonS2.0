@@ -41,6 +41,6 @@ public class BookingModel : PageModel
         _bookingRepo.Tilføj(NewBooking);
 
         // Redirect to a confirmation page with booking ID
-        return RedirectToPage("/BookingConfirmation", new { bookingId = NewBooking.BookingId });
+        return RedirectToPage("/BookingMappe/Confirmation", new { bookingId = NewBooking.BookingId });
     }
 }

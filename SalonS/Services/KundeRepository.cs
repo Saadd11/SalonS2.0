@@ -25,6 +25,10 @@ public class KundeRepository : IKundeRepository
             // Add mock Kunde
             _kunderRepo.Add(new Kunde(1, "ali", "4254231", "test.dk", "ggg"));
             // ... other Kunde ...
+            _kunderRepo.Add(new Kunde(2, "ali", "4254231", "test.dk2", "ggg2"));
+            // ... other Kunde ...
+            _kunderRepo.Add(new Kunde(3, "ali", "4254231", "test.dk3", "ggg3"));
+            // ... other Kunde ...
 
             // Add mock Admin
             _katalogAdmin.Add(new Admin("admin", "admin42546563", "adminhsfh@live.dk", "admin"));
@@ -45,7 +49,7 @@ public class KundeRepository : IKundeRepository
     
     public void AddKunde(Kunde kunde)
     {
-        _kunderRepo.Add(kunde);
+        _kunderRepo.Add(new Kunde());
         //JsonFileServices.WriteToJson(_usersRepo, _fileName);
 
     }

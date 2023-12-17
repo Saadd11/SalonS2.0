@@ -6,9 +6,9 @@ using System;
 
 public class BookingConfirmationModel : PageModel
 {
-    private readonly IBookingRepository _bookingRepository;
+    private readonly BookingRepository _bookingRepository;
 
-    public BookingConfirmationModel(IBookingRepository bookingRepository)
+    public BookingConfirmationModel(BookingRepository bookingRepository)
     {
         _bookingRepository = bookingRepository;
     }

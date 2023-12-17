@@ -1,27 +1,30 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SalonS.Models; // Ensure this namespace is correct for your Kunde model
+using SalonS.Services; // Ensure this namespace is correct for your KundeRepository
 
 namespace SalonS.Pages.Kunde
 {
     public class Opretkunde : PageModel
     {
-        [BindProperty, Required(ErrorMessage = "Indtast Navn"),
-         Display(Name = "Navn")]
+        private readonly KundeRepository _kundeRepo; // Repository for handling Kunde data
+
+        public Opretkunde(KundeRepository kundeRepo)
+        {
+            _kundeRepo = kundeRepo; // Dependency injection of the KundeRepository
+        }
+
+        [BindProperty, Required(ErrorMessage = "Indtast Navn"), Display(Name = "Navn")]
         public string Navn { get; set; }
         
-        [BindProperty, Required(ErrorMessage = "Indtast Telefon Nummer"),
-         Display(Name = "Tlf.nr")]
+        [BindProperty, Required(ErrorMessage = "Indtast Telefon Nummer"), Display(Name = "Tlf.nr")]
         public string Tlf { get; set; }
         
-        [BindProperty, Required(ErrorMessage = "Indtast Email"),
-         Display(Name = "Email")]
+        [BindProperty, Required(ErrorMessage = "Indtast Email"), Display(Name = "Email")]
         public string Email { get; set; }
         
-        
-        
-        [BindProperty, Required(ErrorMessage = "Indtast Adgangskode"),
-         Display(Name = "Adgangskode")]
+        [BindProperty, Required(ErrorMessage = "Indtast Adgangskode"), Display(Name = "Adgangskode")]
         public string Adgangskode { get; set; }
         
         public void OnGet()
@@ -30,16 +33,25 @@ namespace SalonS.Pages.Kunde
 
         public IActionResult OnPost()
         {
-         if (!ModelState.IsValid)
-         {
-          return Page();
-         }
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-         // Perform registration logic here
+            // Create a new Kunde instance
+            var newKunde = new Models.Kunde()
+            {
+                Navn = Navn,
+                Tlf = Tlf,
+                Email = Email,
+                Adgangskode = Adgangskode // Consider hashing this password
+            };
 
-         // Redirect to the Opretbooking page
-         return RedirectToPage("/Booking/Opretbooking");
+            // Save the new customer using the repository
+            _kundeRepo.AddKunde(newKunde);
+
+            // Redirect to the booking creation page
+            return RedirectToPage("/Loginside/Login");
         }
-        }
-        
     }
+}

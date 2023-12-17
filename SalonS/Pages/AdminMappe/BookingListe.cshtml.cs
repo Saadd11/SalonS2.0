@@ -6,10 +6,10 @@ namespace SalonS.Pages.AdminMappe
 {
     public class BookinglisteModel : PageModel
     {
-        private readonly IBookingRepository _bookingRepository;
-        private readonly IKundeRepository _kundeRepository;
+        private readonly BookingRepository _bookingRepository;
+        private readonly KundeRepository _kundeRepository;
 
-        public BookinglisteModel(IBookingRepository bookingRepository, IKundeRepository kundeRepository)
+        public BookinglisteModel(BookingRepository bookingRepository, KundeRepository kundeRepository)
         {
             _bookingRepository = bookingRepository;
             _kundeRepository = kundeRepository;

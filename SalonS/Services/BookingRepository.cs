@@ -29,14 +29,7 @@ namespace SalonS.Services
         private void PopulateBookingRepository()
         {
             
-            KatalogBooking.Add("1", new Booking(1, DateTime.Parse("2023-12-01"), "09:23", "Ali", "Buzzcut", 300,
-                new Kunde(1, "ali", "55235465", "test.dk", "ggg")));
-            
-            KatalogBooking.Add("2", new Booking(2, DateTime.Parse("2023-12-28"), "19:55", "Saad", "Fade", 300,
-                new Kunde(2, "D", "67349922", "test.dk", "ggg")));
-            
-            KatalogBooking.Add("3", new Booking(3, DateTime.Parse("2023-01-21"), "22:27", "D", "Klipning & Skæg", 300,
-                new Kunde(3, "Saad", "98547612", "test.dk", "ggg")));
+           
         }
 
    public List<Booking> GetCustomerBookings(int kundenummer)

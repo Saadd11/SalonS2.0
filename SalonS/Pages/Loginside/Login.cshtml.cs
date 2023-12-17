@@ -6,9 +6,9 @@ namespace SalonS.Pages;
 
 public class LoginModel : PageModel
 {
-    private IKundeRepository _kundeRepository;
+    private KundeRepository _kundeRepository;
 
-    public LoginModel(IKundeRepository KundeRepository)
+    public LoginModel(KundeRepository KundeRepository)
     {
         _kundeRepository = KundeRepository;
     }
@@ -35,6 +35,6 @@ public class LoginModel : PageModel
         }
 
         //husk ændre det her
-        return RedirectToPage("/Booking/Opretbooking");
+        return RedirectToPage("/BookingMappe/Opretbooking");
     }
 }

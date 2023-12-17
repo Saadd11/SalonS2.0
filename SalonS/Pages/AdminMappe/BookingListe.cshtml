@@ -5,43 +5,42 @@
 <html>
 <head>
     <title>Booking List</title>
-    <!-- Add your styles or links to CSS files here -->
 </head>
 <body>
-<h1>Booking List</h1>
+    <h1 style="text-align: center;">Booking List</h1>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Booking ID</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Style</th> <!-- Column for the style -->
-        <th>Barber</th> <!-- Column for the barber -->
-        <th>Customer Name</th>
-        <th>Customer Phone</th>
-        <!-- Add more columns as needed -->
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var booking in Model.Bookings)
-    {
-        <tr>
-            <td>@booking.BookingId</td>
-            <td>@booking.Dato.ToShortDateString()</td>
-            <td>@booking.Tid</td>
-            <td>@booking.Klip</td> <!-- Displaying the style -->
-            <td>@booking.Frisør</td> <!-- Displaying the barber -->
-            <td>
-                @Model.Kunder.FirstOrDefault(k => k.Kundenummer == booking.Kunde.Kundenummer)?.Navn
-            </td>
-            <td>
-                @Model.Kunder.FirstOrDefault(k => k.Kundenummer == booking.Kunde.Kundenummer)?.Tlf
-            </td>
-            <!-- Add more data as needed -->
-        </tr>
-    }
-    </tbody>
-</table>
+    <div style="overflow-x:auto;">
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <thead>
+                <tr style="background-color: lightgray;">
+                    <th style="padding: 8px; border: 1px solid #ddd;">Booking ID</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">Dato</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">Tid</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">Klip</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">Frisør</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">KundeNavn</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">KundeTLF</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model.Bookings)
+                {
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@booking.BookingId</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@booking.Dato.ToShortDateString()</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@booking.Tid</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@booking.Klip</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">@booking.Frisør</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">
+                            @(Model.Kunder.FirstOrDefault(k => k?.Kundenummer == booking.Kunde?.Kundenummer)?.Navn ?? "N/A")
+                        </td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">
+                            @(Model.Kunder.FirstOrDefault(k => k?.Kundenummer == booking.Kunde?.Kundenummer)?.Tlf ?? "N/A")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
