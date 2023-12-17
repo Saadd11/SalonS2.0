@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SalonS.Services;
 
-
-namespace SalonS.Pages.Kunde
+namespace SalonS.Pages.AdminMappe
 {
     public class BookinglisteModel : PageModel
     {

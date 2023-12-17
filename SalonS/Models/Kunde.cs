@@ -1,4 +1,3 @@
-
 namespace SalonS.Models
 {
     public class Kunde

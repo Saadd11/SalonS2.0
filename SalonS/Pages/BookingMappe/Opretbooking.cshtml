@@ -1,0 +1,45 @@
+@page
+@model BookingModel
+
+<h2>Book an Appointment</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="error-message" style="color:red;">
+        @Model.ErrorMessage
+    </div>
+}
+
+<form method="post">
+    <div>
+        <label for="service">Choose a Service:</label>
+        <select id="service" name="NewBooking.Klip">
+            <option value="Skin Fade">Skin Fade - Frisør Ali - 300</option>
+            <!-- Add more service options here as needed -->
+        </select>
+    </div>
+
+    <div>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="NewBooking.Dato" required>
+    </div>
+
+    <div>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="NewBooking.Tid" required>
+    </div>
+
+    <div>
+        <label for="frisør">Frisør:</label>
+        <input type="text" id="frisør" name="NewBooking.Frisør" required>
+    </div>
+
+    <div>
+        <label for="pris">Price:</label>
+        <input type="number" id="pris" name="NewBooking.Pris" required>
+    </div>
+
+    <div>
+        <input type="submit" value="Book Now">
+    </div>
+</form>

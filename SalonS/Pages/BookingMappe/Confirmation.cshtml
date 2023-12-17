@@ -1,0 +1,27 @@
+@page
+@model BookingConfirmationModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmation</title>
+</head>
+<body>
+    <h1>Booking Confirmation</h1>
+    @if (Model.Booking != null)
+    {
+        <p>Booking Number: @Model.Booking.BookingId</p>
+        <p>Date: @Model.Booking.Dato.ToShortDateString()</p>
+        <p>Time: @Model.Booking.Tid</p>
+        <p>Style: @Model.Booking.Klip</p>
+        <p>Barber: @Model.Booking.Frisør</p>
+        <p>Customer Name: @Model.Booking.Kunde.Navn</p>
+        <p>Customer Phone: @Model.Booking.Kunde.Tlf</p>
+        <!-- Display more customer details if needed -->
+    }
+    else
+    {
+        <p>Booking not found.</p>
+    }
+</body>
+</html>

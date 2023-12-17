@@ -3,30 +3,63 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - SalonS</title>
+    <title>Book Your Time - SalonS</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto:400,700" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/SalonS.styles.css" asp-append-version="true"/>
+    <!-- Custom CSS for Barbershop Theme -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .navbar-brand img {
+            height: 120px;
+            width: 120px;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff;
+        }
+        .nav-link:hover {
+            color: #8f868b;
+            text-decoration: underline;
+        }
+        .footer {
+            background-color: #8f868b;
+            color: #fff;
+        }
+        /* Additional custom styles */
+    </style>
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3">
         <div class="container">
-            <a class="navbar-brand" asp-area="" asp-page="/Index">SalonS</a>
+            <!-- Replacing 'SalonS' text with a logo -->
+            <a class="navbar-brand" asp-area="" asp-page="/Index">
+                <img src=https://png.pngtree.com/png-vector/20190528/ourlarge/pngtree-the-barber-shop-png-image_1110460.jpg alt="SalonS Logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-column flex-md-row justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Bookingliste">"Admin"Controlpanel</a>
+                        <a class="nav-link" asp-area="" asp-page="/AdminMappe/BookingListe">"Admin"</a>
                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link text-dark" asp-area="" asp-page="/LoginSide/Login">Account</a>
-                         </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Booking</a>
+                        <a class="nav-link" asp-area="" asp-page="/LoginSide/Login">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-page="/BookingMappe/Opretbooking">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-page="/BookingMappe/BookingListeKunde">Min Booking</a>
                     </li>
                 </ul>
             </div>
@@ -40,8 +73,9 @@
 </div>
 
 <footer class="border-top footer text-muted">
-    <div class="container">
+    <div class="container text-center py-3">
         &copy; 2023 - SalonS - <a asp-area="" asp-page="/Loginside/ConfirmLogout">Log Ud</a>
+        <!-- Additional Footer Content -->
     </div>
 </footer>
 

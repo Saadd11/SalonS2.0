@@ -9,13 +9,6 @@ public class Booking
     private string _klip;
     private int _pris;
     private Kunde? _kunde;
-    public List<string> _kliptyper = new List<string>() {"Klipning med skæg", "klipning uden skæg"};
-
-    public List<string> Kliptyper
-    {
-        get => _kliptyper;
-        set => _kliptyper = value ?? throw new ArgumentNullException(nameof(value));
-    }
 
     /*
      * Properties
@@ -68,8 +61,9 @@ public class Booking
     }
 
     // Parameterized Constructor
-    public Booking(int i, DateTime dato, string tid, string frisør, string klip, int pris, Kunde? kunde)
+    public Booking(int bookingId, DateTime dato, string tid, string frisør, string klip, int pris, Kunde? kunde)
     {
+        BookingId = bookingId; // Set BookingId = i;
         _dato = dato;
         _tid = tid;
         _frisør = frisør;

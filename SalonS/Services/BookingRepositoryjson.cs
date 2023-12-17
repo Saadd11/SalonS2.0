@@ -5,21 +5,21 @@ namespace SalonS.Services
 {
     public class BookingRepositoryjson : IBookingRepository
     {
-    // instans felt
-        Dictionary<string, Booking> _katalogBooking;
-        
-    // properties
-        public Dictionary<string, Booking> Bkatalog
+        // instance field
+        Dictionary<string, Booking> _bookingKatalog;
+
+        // properties
+        public Dictionary<string, Booking> BookingKatalog
         {
-            get { return Bkatalog; }
-            set { Bkatalog = value; }
+            get { return _bookingKatalog; }
+            set { _bookingKatalog = value; }
         }
 
-    // konstruktør
-    public BookingRepositoryjson()
-    {
-        Bkatalog = ReadFromJson();
-    }
+        // constructor
+        public BookingRepositoryjson()
+        {
+            BookingKatalog = ReadFromJson();
+        }
 
 
 
@@ -27,6 +27,11 @@ namespace SalonS.Services
      * metoder
      */
     public Dictionary<string, Booking> GetAll()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Booking? GetBookingById(int bookingId)
     {
         throw new NotImplementedException();
     }
@@ -45,16 +50,36 @@ namespace SalonS.Services
         throw new NotImplementedException();
     }
 
+    public int GenerateUniqueBookingId()
+    {
+        throw new NotImplementedException();
+    }
+
+    public string GenerateNewBookingId()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsDoubleBooking(DateTime date, string time, string barber)
+    {
+        throw new NotImplementedException();
+    }
+
     public Kunde? FindByCustomerId(int customerId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void AddNyBookingTid(Booking booking)
     {
         throw new NotImplementedException();
     }
 
     public Booking Tilføj(Booking booking)
     {
-        if (Bkatalog.ContainsKey(booking.Tid))
+        if (BookingKatalog.ContainsKey(booking.Tid))
         {
-            Bkatalog.Add(booking.Tid, booking);
+            BookingKatalog.Add(booking.Tid, booking);
 
 
             WriteToJson();
@@ -104,7 +129,7 @@ namespace SalonS.Services
     public Booking Slet(string tid)
     {
         Booking slettetBooking = HentBooking(tid);
-        Bkatalog.Remove(tid);
+        BookingKatalog.Remove(tid);
 
         WriteToJson();
         return slettetBooking;
@@ -113,7 +138,7 @@ namespace SalonS.Services
     public Booking Opdater (Booking booking)
     {
         Booking editBooking = HentBooking(booking.Tid);
-        Bkatalog[booking.Tid] = booking;
+        BookingKatalog[booking.Tid] = booking;
         
         
 
@@ -125,9 +150,9 @@ namespace SalonS.Services
 
     public Booking HentBooking(string tid)
     {
-        if (Bkatalog.ContainsKey(tid))
+        if (BookingKatalog.ContainsKey(tid))
         {
-            return Bkatalog[tid];
+            return BookingKatalog[tid];
         }
         else
         {
@@ -138,14 +163,14 @@ namespace SalonS.Services
 
     public List<Booking> HentAlleBookings()
     {
-        return Bkatalog.Values.ToList();
+        return BookingKatalog.Values.ToList();
     }
 
     public Booking HentBookingUdFraTid(string Tid)
     {
         Booking resBooking = null;
 
-        foreach (Booking b in Bkatalog.Values)
+        foreach (Booking b in BookingKatalog.Values)
         {
             if (b.Tid == Tid)
             {
@@ -170,11 +195,7 @@ namespace SalonS.Services
             retBookings = retBookings.FindAll(b => b.Frisør.Contains(frisør));
         }
 
-
-        if (klip is not null)
-        {
-            retBookings = retBookings.FindAll(b => b.Klip.Contains(klip));
-        }
+        
 
         return retBookings;
     }
@@ -219,18 +240,12 @@ namespace SalonS.Services
             return x.Tid.CompareTo(y.Tid);
         }
     }
-
-   
     
-
-
-
-
     public override string ToString()
     {
-        String pænTekst = String.Join(", ", Bkatalog.Values);
+        String pænTekst = String.Join(", ", _bookingKatalog.Values);
 
-        return $"{{{nameof(Bkatalog)}={pænTekst}}}";
+        return $"{{{nameof(_bookingKatalog)}={pænTekst}}}";
     }
 
 
@@ -245,26 +260,23 @@ namespace SalonS.Services
         if (File.Exists(Filename))
         {
             StreamReader reader = File.OpenText(Filename);
-            Dictionary<string, Booking> bKatalog = JsonSerializer.Deserialize<Dictionary<string, Booking>>(reader.ReadToEnd());
+            Dictionary<string, Booking> BookingKatalog = JsonSerializer.Deserialize<Dictionary<string, Booking>>(reader.ReadToEnd());
             reader.Close();
-            return Bkatalog;
+            return BookingKatalog;
         }
         else
         {
             return new Dictionary<string, Booking>();
         }
-
     }
 
     private void WriteToJson()
     {
         FileStream fs = new FileStream(Filename, FileMode.Create);
         Utf8JsonWriter writer = new Utf8JsonWriter(fs);
-        JsonSerializer.Serialize(writer, Bkatalog);
+        JsonSerializer.Serialize(writer, BookingKatalog);
         fs.Close();
     }
-
-
     }
 }
 

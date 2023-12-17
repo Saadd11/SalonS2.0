@@ -1,0 +1,47 @@
+@page
+@model SalonS.Pages.AdminMappe.BookinglisteModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking List</title>
+    <!-- Add your styles or links to CSS files here -->
+</head>
+<body>
+<h1>Booking List</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Booking ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Style</th> <!-- Column for the style -->
+        <th>Barber</th> <!-- Column for the barber -->
+        <th>Customer Name</th>
+        <th>Customer Phone</th>
+        <!-- Add more columns as needed -->
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var booking in Model.Bookings)
+    {
+        <tr>
+            <td>@booking.BookingId</td>
+            <td>@booking.Dato.ToShortDateString()</td>
+            <td>@booking.Tid</td>
+            <td>@booking.Klip</td> <!-- Displaying the style -->
+            <td>@booking.Frisør</td> <!-- Displaying the barber -->
+            <td>
+                @Model.Kunder.FirstOrDefault(k => k.Kundenummer == booking.Kunde.Kundenummer)?.Navn
+            </td>
+            <td>
+                @Model.Kunder.FirstOrDefault(k => k.Kundenummer == booking.Kunde.Kundenummer)?.Tlf
+            </td>
+            <!-- Add more data as needed -->
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
+</html>

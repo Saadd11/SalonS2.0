@@ -35,6 +35,6 @@ public class LoginModel : PageModel
         }
 
         //husk ændre det her
-        return RedirectToPage("Index");
+        return RedirectToPage("/Booking/Opretbooking");
     }
 }
