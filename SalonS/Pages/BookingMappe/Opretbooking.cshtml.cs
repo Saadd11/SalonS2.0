@@ -15,7 +15,7 @@ public class BookingModel : PageModel
     }
 
     [BindProperty]
-    public Booking NewBooking { get; set; }
+    public Booking? NewBooking { get; set; }
 
     public string ErrorMessage { get; set; }
 

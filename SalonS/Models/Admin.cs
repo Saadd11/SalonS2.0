@@ -53,12 +53,12 @@
             _isAdmin = true;
         }
 
-        public Admin(string NavnAdmin, string TlfAdmin, string EmailAdmin, string AdgangskodeAdmin)
+        public Admin(string navnAdmin, string tlfAdmin, string emailAdmin, string adgangskodeAdmin, bool isAdminAdmin)
         {
-            _navn = NavnAdmin;
-            _tlf = TlfAdmin;
-            _email = EmailAdmin;
-            _adgangskode = AdgangskodeAdmin;
+            _navn = navnAdmin;
+            _tlf = tlfAdmin;
+            _email = emailAdmin;
+            _adgangskode = adgangskodeAdmin;
             _isAdmin = true;
         }
 

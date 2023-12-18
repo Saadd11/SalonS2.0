@@ -7,23 +7,31 @@ using System;
 public class BookingConfirmationModel : PageModel
 {
     private readonly BookingRepository _bookingRepository;
+    private readonly KundeRepository _kundeRepository; // Add this
 
-    public BookingConfirmationModel(BookingRepository bookingRepository)
+    public BookingConfirmationModel(BookingRepository bookingRepository, KundeRepository kundeRepository)
     {
         _bookingRepository = bookingRepository;
+        _kundeRepository = kundeRepository; // Initialize
     }
 
     public Booking? Booking { get; private set; }
 
-    public void OnGet(int id)
+    public void OnGet()
     {
-        // Fetch the booking details based on the provided ID
-        Booking = _bookingRepository.GetBookingById(id);
+        // Assuming KundeRepository can give you the logged-in customer's ID
+        var loggedInCustomerId = _kundeRepository.KundeLoggedIn?.Kundenummer;
+
+        if (loggedInCustomerId.HasValue)
+        {
+            // Fetch the most recent booking for the logged-in customer
+            Booking = _bookingRepository.GetMostRecentBookingForCustomer(loggedInCustomerId.Value);
+        }
 
         if (Booking == null)
         {
-            // Handle the case where the booking is not found
-            RedirectToPage("Error"); // Redirect to an error page or handle differently
+            // Redirect to an error page if no recent booking found or not logged in
+            RedirectToPage("Error"); // Adjust as needed
         }
     }
 }

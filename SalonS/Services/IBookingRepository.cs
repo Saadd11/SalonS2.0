@@ -8,13 +8,13 @@ namespace SalonS.Services
     {
         // Retrieves all bookings.
         
-        List<Booking> HentAlleBooking();
+        List<Booking?> HentAlleBooking();
 
         // Retrieves a specific booking by its ID.
         Booking? GetBookingById(int bookingId);
 
         // Adds a new booking to the repository.
-        void Tilføj(Booking booking);
+        void Tilføj(Booking? booking);
 
         // Updates an existing booking.
         void OpdaterBooking(Booking booking);

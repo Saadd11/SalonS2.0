@@ -25,13 +25,15 @@ public class KundeRepository : IKundeRepository
             // Add mock Kunde
             _kunderRepo.Add(new Kunde(1, "ali", "4254231", "test.dk", "ggg"));
             // ... other Kunde ...
-            _kunderRepo.Add(new Kunde(2, "ali", "4254231", "test.dk2", "ggg2"));
+            _kunderRepo.Add(new Kunde(2, "Dani", "4254231", "test.dk2", "ggg2"));
             // ... other Kunde ...
-            _kunderRepo.Add(new Kunde(3, "ali", "4254231", "test.dk3", "ggg3"));
+            _kunderRepo.Add(new Kunde(3, "Saad", "4254231", "test.dk4", "ggg4"));
+            // ... other Kunde ...
+            _kunderRepo.Add(new Kunde(4, "Abdi", "4254231", "test.dk4", "ggg3"));
             // ... other Kunde ...
 
             // Add mock Admin
-            _katalogAdmin.Add(new Admin("admin", "admin42546563", "adminhsfh@live.dk", "admin"));
+            _katalogAdmin.Add(new Admin("admin", "admin42546563", "admin", "admin", true));
             // ... other Admin ...
         }
     }

@@ -36,7 +36,7 @@ namespace SalonS.Services
         throw new NotImplementedException();
     }
 
-    void IBookingRepository.Tilføj(Booking booking)
+    void IBookingRepository.Tilføj(Booking? booking)
     {
         throw new NotImplementedException();
     }
@@ -99,7 +99,7 @@ namespace SalonS.Services
         throw new NotImplementedException();
     }
 
-    public List<Booking> HentAlleBooking()
+    public List<Booking?> HentAlleBooking()
     {
         throw new NotImplementedException();
     }

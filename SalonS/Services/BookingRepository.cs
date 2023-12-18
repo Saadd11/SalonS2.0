@@ -6,10 +6,10 @@ namespace SalonS.Services
     {
         public readonly List<Kunde?> KunderRepo = new List<Kunde?>();
 
-        public readonly Dictionary<string, Booking> KatalogBooking;
+        public readonly Dictionary<string, Booking?> KatalogBooking;
         
         
-        public Dictionary<int, List<Booking>> CustomerBookings { get; set; } = new Dictionary<int, List<Booking>>();
+        public Dictionary<int, List<Booking?>> CustomerBookings { get; set; } = new Dictionary<int, List<Booking?>>();
 
 
         /*
@@ -18,7 +18,7 @@ namespace SalonS.Services
 
         public BookingRepository(bool mockData = false)
         {
-            KatalogBooking = new Dictionary<string, Booking>();
+            KatalogBooking = new Dictionary<string, Booking?>();
 
             if (mockData)
             {
@@ -28,6 +28,9 @@ namespace SalonS.Services
 
         private void PopulateBookingRepository()
         {
+            
+           // KatalogBooking.Add("1", new Booking(1, DateTime.Parse("2023-12-01"), "09:23", "Ali", "Buzzcut", 300,
+               // new Kunde(1, "ali", "55235465", "test.dk", "ggg")));
             
            
         }
@@ -47,7 +50,7 @@ namespace SalonS.Services
             return KatalogBooking.Values.FirstOrDefault(b => b.BookingId == bookingId) ?? throw new InvalidOperationException();
         }
 
-        public Dictionary<string, Booking> GetAll()
+        public Dictionary<string, Booking?> GetAll()
         {
             return KatalogBooking;
         }
@@ -58,7 +61,7 @@ namespace SalonS.Services
             return booking;
         }
 
-        public void Tilføj(Booking booking)
+        public void Tilføj(Booking? booking)
         {
             // Ensure a unique BookingId is assigned
             if (booking.BookingId <= 0)
@@ -72,7 +75,7 @@ namespace SalonS.Services
             // Update CustomerBookings dictionary
             if (!CustomerBookings.ContainsKey(booking.Kunde.Kundenummer))
             {
-                CustomerBookings[booking.Kunde.Kundenummer] = new List<Booking>();
+                CustomerBookings[booking.Kunde.Kundenummer] = new List<Booking?>();
             }
             CustomerBookings[booking.Kunde.Kundenummer].Add(booking);
         }
@@ -116,6 +119,15 @@ namespace SalonS.Services
             // Convert the string keys to integers, get the max, and increment by one
             return KatalogBooking.Keys.Select(key => int.Parse(key)).Max() + 1;
         }
+        
+        public Booking? GetMostRecentBookingForCustomer(int customerId)
+        {
+            return KatalogBooking.Values
+                .Where(booking => booking.Kunde?.Kundenummer == customerId)
+                .OrderByDescending(booking => booking.Dato)
+                .ThenByDescending(booking => booking.Tid)
+                .FirstOrDefault();
+        }
 
         
         public List<Kunde?> HentAlleKunder()
@@ -123,7 +135,7 @@ namespace SalonS.Services
             return KunderRepo.ToList();
         }
 
-        public List<Booking> HentAlleBooking()
+        public List<Booking?> HentAlleBooking()
         {
             return KatalogBooking.Values.ToList();
         }
