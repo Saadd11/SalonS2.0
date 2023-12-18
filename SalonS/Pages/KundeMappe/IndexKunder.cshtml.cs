@@ -2,34 +2,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SalonS.Services;
 
-namespace SalonS.Pages.Kunde;
+namespace SalonS.Pages.KundeMappe;
 
-public class IndexKunderModel : PageModel
+public class IndexKunder : PageModel
 {
     private IKundeRepository _kunde;
 
     public Models.Kunde KundeLoggedIn { get; private set; }
 
-    public IndexKunderModel(IKundeRepository users)
+    public IndexKunder(IKundeRepository kunder)
     {
-        _kunde = users;
+        _kunde = kunder;
     }
 
-    public IActionResult OnGet(int kundenummer)
+    public IActionResult OnGet()
     {
         if (_kunde is null || _kunde.KundeLoggedIn is null )
         {
             return RedirectToPage("/Login");
         }
 
-        KundeLoggedIn = _kunde.GetKundeNr(kundenummer);
-
-        if (KundeLoggedIn is null)
-        {
-            // Handle the case where the customer with the provided ID was not found.
-            return RedirectToPage("/NotFound"); // You can replace this with the appropriate redirect.
-        }
-
+        KundeLoggedIn = _kunde.KundeLoggedIn;
         return Page();
     }
 }

@@ -2,26 +2,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SalonS.Services;
 
-namespace SalonS.Pages.Admin;
+namespace SalonS.Pages.AdminMappe;
 
 public class IndexAdmin : PageModel
 {
-        private IKundeRepository _admins;
+        private IKundeRepository _kunde;
 
-        public Models.Admin AdminLoggedIn {  get; private set; }
+        public Models.Kunde KundeLoggedIn {  get; private set; }
 
-        public IndexAdmin(IKundeRepository Admins)
+        public IndexAdmin(IKundeRepository kunde)
         {
-            _admins = Admins;
+            _kunde = kunde;
         }
 
         public IActionResult OnGet()
         {
-            if (_admins is null || _admins.AdminLoggedIn is null || !_admins.AdminLoggedIn.IsAdminAdmin) {
+            if (_kunde is null || _kunde.KundeLoggedIn is null || !_kunde.KundeLoggedIn.IsAdmin) {
                 return RedirectToPage("/Login");
             }
 
-            AdminLoggedIn = _admins.AdminLoggedIn;   
+            KundeLoggedIn= _kunde.KundeLoggedIn;   
 
             return Page();
         }

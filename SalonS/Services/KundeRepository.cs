@@ -6,12 +6,11 @@ public class KundeRepository : IKundeRepository
 {
     //Instans felt
     private List<Kunde> _kunderRepo = new List<Kunde>();
-    private List<Admin> _katalogAdmin= new List<Admin>();
+  
 
 
     public Kunde? KundeLoggedIn { get; private set; } // Use non-nullable Kunde
     
-    public Admin? AdminLoggedIn { get; private set; } // Use non-nullable Kunde
     
     
     public KundeRepository(bool mockData = false)
@@ -23,26 +22,20 @@ public class KundeRepository : IKundeRepository
         {
             
             // Add mock Kunde
-            _kunderRepo.Add(new Kunde(1, "ali", "4254231", "test.dk", "ggg"));
+            _kunderRepo.Add(new Kunde(1, "ali", "4254231", "test.dk", "ggg",false));
             // ... other Kunde ...
-            _kunderRepo.Add(new Kunde(2, "Dani", "4254231", "test.dk2", "ggg2"));
+            _kunderRepo.Add(new Kunde(2, "ali", "4254231", "test.dk2", "ggg2",false));
             // ... other Kunde ...
-            _kunderRepo.Add(new Kunde(3, "Saad", "4254231", "test.dk4", "ggg4"));
-            // ... other Kunde ...
-            _kunderRepo.Add(new Kunde(4, "Abdi", "4254231", "test.dk4", "ggg3"));
+            _kunderRepo.Add(new Kunde(3, "ali", "4254231", "test.dk3", "ggg3",true));
             // ... other Kunde ...
 
             // Add mock Admin
-            _katalogAdmin.Add(new Admin("admin", "admin42546563", "admin", "admin", true));
+            
             // ... other Admin ...
         }
     }
     
-
-    public void LogoutAdmin()
-    {
-        AdminLoggedIn = null;
-    }
+    
 
     //KUNDE TING EFTER DET HER
 
@@ -64,11 +57,22 @@ public class KundeRepository : IKundeRepository
         
     }
 
+    public Kunde GetKunde(int kundenummer)
+    {
+        throw new NotImplementedException();
+    }
+
+
     public List<Kunde> GetKunde()
     {
         return _kunderRepo;
     }
-    
+
+    public Kunde Opdater(Kunde kunde)
+    {
+        throw new NotImplementedException();
+    }
+
     public Kunde? GetKundeNr(int kundenummer)
     {
         return _kunderRepo.FirstOrDefault(x => x?.Kundenummer == kundenummer);

@@ -61,14 +61,24 @@ namespace SalonS.Models
             _isAdmin = false;
         }
 
-        public Kunde(int kundenummer, string navn, string tlf, string email, string adgangskode)
+        public Kunde(int kundenummer, string navn, string tlf, string email, string adgangskode,bool isAdmin)
         {
             _kundeNummer = kundenummer;
             _navn = navn;
             _tlf = tlf;
             _email = email;
             _adgangskode = adgangskode;
-            _isAdmin = IsAdmin;
+            _isAdmin = isAdmin;
+        }
+
+        public Kunde(int nytKundeNummer, string nytKundeNavn, string nytKundetlf, string nytKundeEmail)
+        {
+            {
+                _kundeNummer = nytKundeNummer;
+                _navn = nytKundeNavn;
+                _tlf = nytKundetlf;
+                _email = nytKundeEmail;
+            }
         }
 
         public override string ToString()
